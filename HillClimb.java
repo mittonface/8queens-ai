@@ -21,7 +21,8 @@ public class HillClimb{
             }
         }
         current_board.print();
-
+        System.out.println("");
+        System.out.println("Heuristic Value: " + current_board.getH());
     }
 }
     

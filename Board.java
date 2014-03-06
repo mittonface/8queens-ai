@@ -1,3 +1,4 @@
+import java.util.Random;
 // this class will keep track of the configuration of queens, I may not have needed an extra class for
 // this but that's okay.
 public class Board implements Comparable<Board>
@@ -6,18 +7,20 @@ public class Board implements Comparable<Board>
     private int h;
     public Board successors[] = new Board[56];
 
-    // this just generates a board with a row of queens along the top. The assignment
-    // wants randomly generated boards. So I'll either change this or add some sort of shuffle
+
+    // generate a random (well...not random columns) layout of 8 queens
     public Board(){
-        list[0] = new Queen(0,0);
-        list[1] = new Queen(0,1);
-        list[2] = new Queen(0,2);
-        list[3] = new Queen(0,3);
-        list[4] = new Queen(0,4);
-        list[5] = new Queen(0,5);
-        list[6] = new Queen(0,6);
-        list[7] = new Queen(0,7);
+        list[0] = new Queen(randInt(0,7),0);
+        list[1] = new Queen(randInt(0,7),1);
+        list[2] = new Queen(randInt(0,7),2);
+        list[3] = new Queen(randInt(0,7),3);
+        list[4] = new Queen(randInt(0,7),4);
+        list[5] = new Queen(randInt(0,7),5);
+        list[6] = new Queen(randInt(0,7),6);
+        list[7] = new Queen(randInt(0,7),7);
+        print();
         h();
+
     }
 
     // create another board that is an identical copy of the current board.
@@ -102,4 +105,17 @@ public class Board implements Comparable<Board>
             return 0;
         }
     }
+
+
+    private int randInt(int min, int max) {
+
+    // Usually this can be a field rather than a method variable
+    Random rand = new Random();
+
+    // nextInt is normally exclusive of the top value,
+    // so add 1 to make it inclusive
+    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+    return randomNum;
+}
 }
