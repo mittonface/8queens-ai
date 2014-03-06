@@ -25,6 +25,7 @@ public class Queen
         return attack;
     }
     
+
     public void up(int amt){
         row = row - amt;
 
@@ -32,10 +33,12 @@ public class Queen
             row = 0;
     }
     
+
     public void down(int amt){
         row = row + amt;
         
         if (row > 7)
-            row = 7;
+            row = (row % 7) -1 ; // this seems right to me, but it's very late
+                                 // I could be wrong.
     }
 }

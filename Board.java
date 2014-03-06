@@ -5,7 +5,7 @@ public class Board
     // maybe not efficient to keep track of the queens in two different
     public Queen[] list = new Queen[8];
     private int h;
-    private Board successors[] = new Board[52];
+    public Board successors[] = new Board[56];
     public Board(){
         list[0] = new Queen(0,0);
         list[1] = new Queen(0,1);
@@ -24,6 +24,21 @@ public class Board
             list[i] = new Queen(baseboard.list[i].row, i);
         } 
         h();
+    }
+
+    // generate all successors for this board
+    public void generateSuccessors(){
+        int count = 0;
+        // for each of the 8 queens
+        for (int i=0; i<8; i++){
+            // move them down a place on the board, one at a time
+            for(int j=1; j<=7; j++){
+                successors[count] = new Board(this); // new board identical to this one
+                successors[count].list[i].down(j);   // move a queen down j spaces
+                successors[count].h();               // calculate the h value for this board
+                count++;
+            }
+        }
     }
 
 
@@ -63,5 +78,7 @@ public class Board
             }
             System.out.println("");
         }
+            System.out.println("");
+            System.out.println("-------------------------");
     }
 }
