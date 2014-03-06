@@ -87,7 +87,7 @@ public class Board implements Comparable<Board>
     }
 
     // getter for the H value. 
-    public getH(){
+    public int getH(){
         return h;
     }
 
