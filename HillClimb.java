@@ -1,4 +1,4 @@
-public class Runner{
+public class HillClimb{
 
     public static void main(String[] args){
         Board board = new Board();

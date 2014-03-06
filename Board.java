@@ -1,11 +1,13 @@
 // this class will keep track of the configuration of queens, I may not have needed an extra class for
 // this but that's okay.
-public class Board
+public class Board implements Comparable<Board>
 {
-    // maybe not efficient to keep track of the queens in two different
     public Queen[] list = new Queen[8];
     private int h;
     public Board successors[] = new Board[56];
+
+    // this just generates a board with a row of queens along the top. The assignment
+    // wants randomly generated boards. So I'll either change this or add some sort of shuffle
     public Board(){
         list[0] = new Queen(0,0);
         list[1] = new Queen(0,1);
@@ -18,7 +20,8 @@ public class Board
         h();
     }
 
-    // copy another board to a new board
+    // create another board that is an identical copy of the current board.
+    // used in state generation. since neighbour states only have a 1-move difference
     public Board(Board baseboard){
         for (int i=0; i<8; i++){
             list[i] = new Queen(baseboard.list[i].row, i);
@@ -26,7 +29,8 @@ public class Board
         h();
     }
 
-    // generate all successors for this board
+    // generate all successors for this board. A successor state is one where one of the queens
+    // in one of the columns has moved down X number of spaces
     public void generateSuccessors(){
         int count = 0;
         // for each of the 8 queens
@@ -80,5 +84,22 @@ public class Board
         }
             System.out.println("");
             System.out.println("-------------------------");
+    }
+
+    // getter for the H value. 
+    public getH(){
+        return h;
+    }
+
+    // comparison based on the h value, this should be able to be used in the actual 
+    // algorithm.
+    public int compareTo(Board b2){
+        if(h < b2.getH()){
+            return -1;
+        }else if (h > b2.getH()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
