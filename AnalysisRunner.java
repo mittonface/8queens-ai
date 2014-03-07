@@ -31,8 +31,8 @@ public class AnalysisRunner
                 restart_successes++;
         }
 
-        System.out.println("Hill Climbing Successes " + hc_successes + "/200");
-        System.out.println("Simulated Annealing Successes " + anneal_successes + "/200");
-        System.out.println("Random Restart Hill Climbing Successes " + restart_successes + "/200");
+        System.out.println("Hill Climbing Successes " + hc_successes + "/1000");
+        System.out.println("Simulated Annealing Successes " + anneal_successes + "/1000");
+        System.out.println("Random Restart Hill Climbing Successes " + restart_successes + "/1000");
     }
 }
