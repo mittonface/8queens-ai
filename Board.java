@@ -91,6 +91,7 @@ public class Board implements Comparable<Board>
 
     // getter for the H value. 
     public int getH(){
+        h();
         return h;
     }
 
@@ -119,7 +120,6 @@ public class Board implements Comparable<Board>
         // create the new state and move the queen
         Board b = new Board(this);
         b.list[queen_num].down(move_distance);
-
 
         return b;
     }

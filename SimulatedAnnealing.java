@@ -1,19 +1,20 @@
 public class SimulatedAnnealing{
 
     public static void main(String[] args){
-        Board initial_board = new Board();
-        System.out.println("PROBLEM");
-        initial_board.print();
-        Board solution = anneal(initial_board);
 
-        System.out.println("SOLUTION");
+
+
+        Board initial_board = new Board();
+        Board solution = anneal(initial_board, 30, 0.0005);
         solution.print();
+
+
     }
 
-    public static Board anneal(Board b){
+    public static Board anneal(Board b, double start_temperature, double step_val){
 
-        double temperature = 1000;  // initial temperature
-        double t_step = 0.1;            // temperature decrease per loop
+        double temperature = start_temperature;  // initial temperature
+        double t_step = step_val;            // temperature decrease per loop
         double p;                  // probability for accepting random state
 
         Board current = b;
@@ -21,11 +22,11 @@ public class SimulatedAnnealing{
         int delta_e;
         double rand_num;
 
-        while (temperature > 0){
+        while (temperature > 0 && current.getH() != 0){
 
             next = current.randomNeighbour();
 
-            delta_e = next.getH() - current.getH();
+            delta_e = current.getH() - next.getH()  ;
 
            // System.out.println("Delta E ->" + delta_e);
             
