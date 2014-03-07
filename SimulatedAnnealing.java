@@ -1,13 +1,18 @@
 public class SimulatedAnnealing{
-
+    public SimulatedAnnealing(){}
     public static void main(String[] args){
 
 
         Board initial_board = new Board();
-        Board solution = anneal(initial_board, 30, 0.0005);
+        Board solution = anneal(initial_board, 30, 0.001);
         solution.print();
 
 
+    }
+
+    public static Board runBoard(Board b){
+        Board solution = anneal(b, 30, 0.0005);
+        return solution;
     }
 
     public static Board anneal(Board b, double start_temperature, double step_val){
@@ -20,11 +25,13 @@ public class SimulatedAnnealing{
         Board next = new Board(); // stores the random neighbour
         int delta_e;
         double rand_num;
+        int nodes_generated = 0;
 
         while (temperature > 0 && current.getH() != 0){
 
             // pick a random neighbour
             next = current.randomNeighbour();
+            nodes_generated++;
 
             // compare the neighbours h value
             delta_e = current.getH() - next.getH()  ;
@@ -44,7 +51,7 @@ public class SimulatedAnnealing{
             }
             temperature -= t_step;
         }
-
+        System.out.print(nodes_generated + ",");
         return current;
     }
 }
