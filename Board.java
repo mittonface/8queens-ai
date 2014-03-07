@@ -18,7 +18,7 @@ public class Board implements Comparable<Board>
         list[5] = new Queen(randInt(0,7),5);
         list[6] = new Queen(randInt(0,7),6);
         list[7] = new Queen(randInt(0,7),7);
-        print();
+
         h();
 
     }
@@ -106,6 +106,23 @@ public class Board implements Comparable<Board>
         }
     }
 
+    // return a random neighbour for this board. I don't need to generate all
+    // neighbours for simulated annealing, so this function can save me some
+    // cycles.
+    public Board randomNeighbour(){
+        // pick a random queen to move.
+        int queen_num = randInt(0,7);
+
+        // choose a random amount to move the queen down.
+        int move_distance = randInt(1,7);
+
+        // create the new state and move the queen
+        Board b = new Board(this);
+        b.list[queen_num].down(move_distance);
+
+
+        return b;
+    }
 
     private int randInt(int min, int max) {
 
